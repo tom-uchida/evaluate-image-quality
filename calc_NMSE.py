@@ -24,9 +24,15 @@ def NMSE(_img_I_RGB, _img_K_RGB):
     img_K_gray = cv2.cvtColor(_img_K_RGB, cv2.COLOR_RGB2GRAY)
 
     # Calc NMSE
+    # Grayscale ver.
     MSE_numer = np.sum( (img_I_gray - img_K_gray) ** 2 )
     MSE_denom = np.sum( (img_I_gray) ** 2 )
     NMSE = MSE_numer / MSE_denom
+
+    # RGB color ver.
+    # MSE_numer = np.sum( (_img_I_RGB - _img_K_RGB) ** 2 )
+    # MSE_denom = np.sum( (_img_I_RGB) ** 2 )
+    # NMSE = MSE_numer / MSE_denom
 
     print("\nMSE_numer\n>", MSE_numer)
     print("\nMSE_denom\n>", MSE_denom)

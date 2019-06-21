@@ -2,6 +2,13 @@ import numpy as np
 import math
 import cv2
 
+# Check arguments
+import sys
+args = sys.argv
+if len(args) != 3:
+    print("\nUSAGE : $ python calc_NMSE.py [reference_image] [evaluation_image]")
+    sys.exit()
+
 def read_img(_img_name):
 	# read input image
 	img = cv2.imread(_img_name)
@@ -11,52 +18,7 @@ def read_img(_img_name):
 
 	return img
 
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL1.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR1.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL5.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR5.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL10.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR10.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL20.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR20.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL30.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR30.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL40.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR40.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL50.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR50.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL60.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR60.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL70.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR70.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL80.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR80.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL90.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR90.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL100.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR100.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL110.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR110.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL120.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR120.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL130.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR130.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL140.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR140.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL150.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR150.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL160.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR160.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL170.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR170.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL180.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR180.bmp")
-img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL190.bmp")
-img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR190.bmp")
-# img1_RGB = read_img("images/DATA/uniformly_new/1024/plane_10M_RL200.bmp")
-# img2_RGB = read_img("images/DATA/uniformly_new/1024_1e-05/gaussian_plane_LR200.bmp")
-
-def psnr(_img1_RGB, _img2_RGB):
+def PSNR(_img1_RGB, _img2_RGB):
     # Calc max pixel value
     MAX_PIXEL_VALUE = max(np.max(_img1_RGB), np.max(_img2_RGB))
     # print("\nMAX_1\n>", np.max(_img1_RGB))
@@ -68,14 +30,19 @@ def psnr(_img1_RGB, _img2_RGB):
     img2_gray = cv2.cvtColor(_img2_RGB, cv2.COLOR_RGB2GRAY)
 
     # Calc MSE
-    MSE_gray = np.mean( (img1_gray - img2_gray) ** 2 ) # Gray
-    MSE_denominator = np.mean( (img1_gray) ** 2 )
-    MSE_normalized = MSE_gray / MSE_denominator
-    print("\nMSE_gray\n>", MSE_gray)
-    print("\nMSE_denominator\n>", MSE_denominator)
-    print("\nMSE_normalized\n>", MSE_normalized)
+    # Grayscale ver.
+    # MSE_gray = np.mean( (img1_gray - img2_gray) ** 2 ) # Gray
+    # MSE_denominator = np.mean( (img1_gray) ** 2 )
+    # MSE_normalized = MSE_gray / MSE_denominator
+    # print("\nMSE_gray\n>", MSE_gray)
+    # print("\nMSE_denominator\n>", MSE_denominator)
+    # print("\nMSE_normalized\n>", MSE_normalized)
+    # return 20 * math.log10(MAX_PIXEL_VALUE / math.sqrt(MSE_gray))
 
-    return 20 * math.log10(MAX_PIXEL_VALUE / math.sqrt(MSE_gray))
+    # RGB color var.
+    MN = 1000 ** 2
+    MSE_rgb = 1/MN * np.sum( (_img1_RGB - _img2_RGB) ** 2 ) # RGB
+    return 20*math.log10(MAX_PIXEL_VALUE) - 10*math.log10(MSE_rgb)
 
     # print("\nmse_R\n>", mse_R)
     # print("\nmse_G\n>", mse_G)
@@ -86,7 +53,11 @@ def psnr(_img1_RGB, _img2_RGB):
     
     # return 20 * math.log10(MAX_PIXEL_VALUE / math.sqrt(MSE))
 
-db = psnr(img1_RGB, img2_RGB)
+if __name__ == "__main__":
+    # Read two images
+    img_ref_I_RGB = read_img( args[1] )
+    img_eva_K_RGB = read_img( args[2] )
+    # print("\nPSNR =", PSNR(img_ref_I_RGB, img_eva_K_RGB), "\n")
 
-# print("\nPSNR\n>", db)
-print("\n")
+    psnr = cv2.PSNR(img_ref_I_RGB, img_eva_K_RGB)
+    print("\nPSNR =", psnr, "\n")
