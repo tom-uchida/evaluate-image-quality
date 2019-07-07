@@ -31,15 +31,15 @@ noise       = df_noise.values
 # 0, 10, 100, 200
 index = [0, 2, 11, 13]
 
-# LR_original  = original[:16,0]
-# apv_original = original[:16,1]
-LR_original  = original[:21,0]
-apv_original = original[:21,1]
+LR_original  = original[:16,0]
+apv_original = original[:16,1]
+# LR_original  = original[:21,0]
+# apv_original = original[:21,1]
 
-# LR_noise    = noise[:16,0]
-# apv_noise   = noise[:16,1]
-LR_noise    = noise[:21,0]
-apv_noise   = noise[:21,1]
+LR_noise    = noise[:16,0]
+apv_noise   = noise[:16,1]
+# LR_noise    = noise[:21,0]
+# apv_noise   = noise[:21,1]
 
 # Calc diff b/w Original Image and Noise Image
 # diff = api_original - api_noised
@@ -84,8 +84,8 @@ plt.ylabel('Average pixel value', fontsize=14)
 # plt.text(104, 45, "41", fontsize=12, color='b')
 # plt.text(104, 25, "39", fontsize=12, color='r')
 
-# plt.xticks([1, 50, 100, 150])
-plt.xticks([1, 50, 100, 150, 200])
+plt.xticks([1, 50, 100, 150])
+# plt.xticks([1, 50, 100, 150, 200])
 plt.yticks([0, 50, 100, 150, 200, 255])
 
 plt.grid()

@@ -23,8 +23,10 @@ csv = pd.read_csv(args[1], header=None)
 
 # Convert to numpy
 LR_MSE = csv.values
-LR  = LR_MSE[0:11,0]
-MSE = LR_MSE[0:11,1]
+# LR  = LR_MSE[0:11,0] # L=1-100
+# MSE = LR_MSE[0:11,1] 
+LR  = LR_MSE[0:16,0] # L=1-150
+MSE = LR_MSE[0:16,1]
 
 # Create figure
 c = plt.scatter(LR, MSE, color='black')
@@ -35,7 +37,8 @@ plt.rcParams["font.size"] = 14
 plt.xlabel('$L$', fontsize=14)
 plt.ylabel('MSE', fontsize=14) # Gray scale
 
-plt.xticks([1, 20, 40, 60, 80, 100], fontsize=14)
+# plt.xticks([1, 20, 40, 60, 80, 100], fontsize=14)
+plt.xticks([1, 50, 100, 150], fontsize=14)
 plt.yticks([0, 5000, 10000, 15000, 20000], fontsize=12)
 
 plt.grid()
