@@ -35,11 +35,15 @@ LR_original  = original[:16,0]
 apv_original = original[:16,1]
 # LR_original  = original[:21,0]
 # apv_original = original[:21,1]
+# LR_original  = original[:11,0]
+# apv_original = original[:11,1]
 
 LR_noise    = noise[:16,0]
 apv_noise   = noise[:16,1]
 # LR_noise    = noise[:21,0]
 # apv_noise   = noise[:21,1]
+# LR_noise    = noise[:11,0]
+# apv_noise   = noise[:11,1]
 
 # Calc diff b/w Original Image and Noise Image
 # diff = api_original - api_noised
@@ -52,7 +56,7 @@ plt.rcParams["mathtext.rm"] = "Times New Roman"
 plt.rcParams["font.size"] = 12
 
 plt.scatter(LR_original, apv_original, color='blue', label="Ground truth")
-plt.scatter(LR_noise, apv_noise, color='red', label=r"Gaussian noise, $σ^2=1.0 \times 10^{-2}$")
+plt.scatter(LR_noise, apv_noise, color='red', label=r"Gaussian noise, $σ^2=1.0 \times 10^{-5}$")
 
 # error bar
 # plt.errorbar(RL_original, api_original, yerr=std_original, fmt='ro', ecolor='blue')
@@ -86,9 +90,10 @@ plt.ylabel('Average pixel value', fontsize=14)
 
 plt.xticks([1, 50, 100, 150])
 # plt.xticks([1, 50, 100, 150, 200])
-plt.yticks([0, 50, 100, 150, 200, 255])
+# plt.xticks([1, 50, 100])
+plt.yticks([0, 100, 200, 255])
 
 plt.grid()
-plt.legend(fontsize=12)
+# plt.legend(fontsize=12)
 
 plt.show()
