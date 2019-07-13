@@ -91,9 +91,9 @@ plt.ylabel('Average pixel value', fontsize=14)
 plt.xticks([1, 50, 100, 150])
 # plt.xticks([1, 50, 100, 150, 200])
 # plt.xticks([1, 50, 100])
-plt.yticks([0, 100, 200, 255])
+plt.yticks([0, 50, 100, 150, 200, 250])
 
 plt.grid()
-# plt.legend(fontsize=12)
+plt.legend(fontsize=14)
 
 plt.show()
