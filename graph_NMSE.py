@@ -30,15 +30,15 @@ NMSE = LR_NMSE[0:16,1]
 # plt.plot(LR, NMSE, color='black')
 c = plt.scatter(LR, NMSE, color='black')
 
-plt.rcParams["mathtext.fontset"] = "stix"
+plt.rcParams["mathtext.fontset"] = "cm"
 plt.rcParams["mathtext.rm"] = "Times New Roman"
 plt.rcParams["font.size"] = 14
 plt.xlabel('$L$', fontsize=14)
-plt.ylabel('NMSE', fontsize=14) # Gray scale
+plt.ylabel(r'$\rNMSE$', fontsize=14) # Gray scale
 
 plt.xticks([1, 50, 100, 150], fontsize=14)
 # plt.yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0], fontsize=14)
-plt.yticks([0, 0.05, 0.1, 0.15, 0.2], fontsize=14)
+plt.yticks([0, 0.05, 0.1, 0.15, 0.2, 0.25], fontsize=14)
 
 plt.grid()
 plt.legend(fontsize=12)
