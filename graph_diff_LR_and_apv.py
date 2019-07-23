@@ -51,9 +51,9 @@ diff_apv = np.abs(diff)
 print(diff_apv)
 
 # Figure
-plt.rcParams["mathtext.fontset"] = "stix"
+plt.rcParams["mathtext.fontset"] = "cm"
 plt.rcParams["mathtext.rm"] = "Times New Roman"
-plt.rcParams["font.size"] = 12
+plt.rcParams["font.size"] = 14
 
 # diff
 plt.scatter(LR_original, diff_apv, color='black')
@@ -66,6 +66,7 @@ plt.xticks([1, 10, 100, 150])
 # plt.xticks([1, 50, 100, 150, 200])
 # plt.xticks([1, 50, 100])
 plt.yticks([0, 50, 100, 150, 200, 250])
+# plt.yticks([0, 50, 100])
 
 plt.grid()
 
