@@ -31,14 +31,14 @@ MSE = LR_MSE[0:16,1]
 # Create figure
 c = plt.scatter(LR, MSE, color='black')
 
-plt.rcParams["mathtext.fontset"] = "stix"
+plt.rcParams["mathtext.fontset"] = "cm"
 plt.rcParams["mathtext.rm"] = "Times New Roman"
 plt.rcParams["font.size"] = 14
 plt.xlabel('$L$', fontsize=14)
 plt.ylabel('MSE', fontsize=14) # Gray scale
 
-# plt.xticks([1, 50, 100, 150], fontsize=14)
-plt.xticks([1, 10, 100, 150], fontsize=14)
+plt.xticks([1, 50, 100, 150], fontsize=14)
+# plt.xticks([1, 10, 100, 150], fontsize=14)
 # plt.xticks([1, 50, 100], fontsize=14)
 # plt.yticks([0, 5000, 10000, 15000, 20000], fontsize=12)
 plt.yticks([0, 5000, 10000, 15000, 20000], fontsize=12)

@@ -62,10 +62,10 @@ plt.scatter(LR_original, diff_apv, color='black')
 plt.xlabel('$L$', fontsize=14)
 plt.ylabel('Difference of average pixel value', fontsize=14) # Diff
 
-plt.xticks([1, 10, 100, 150])
-# plt.xticks([1, 50, 100, 150, 200])
+# plt.xticks([1, 10, 100, 150])
+plt.xticks([1, 50, 100, 150])
 # plt.xticks([1, 50, 100])
-plt.yticks([0, 50, 100, 150, 200, 250])
+plt.yticks([0, 50, 100, 150, 200, 255])
 # plt.yticks([0, 50, 100])
 
 plt.grid()
