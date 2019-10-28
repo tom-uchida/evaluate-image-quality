@@ -18,7 +18,7 @@ plt.rc('lines', linewidth=2)
 import sys
 args = sys.argv
 if len(args) != 3:
-    print("\nUSAGE : $ python graph_LR_and_apv.py [original_avg_pixel_value.cav] [noise_avg_pixel_value.csv]")
+    print("\nUSAGE : $ python graph_LR_and_apv.py [original_avg_pixel_value.csv] [noise_avg_pixel_value.csv]")
     sys.exit()
 
 # Read csv file
