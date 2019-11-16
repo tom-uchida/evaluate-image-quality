@@ -1,7 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-plt.style.use('seaborn-white')
+plt.style.use('bmh')
+# plt.style.use('seaborn-white')
 
 from matplotlib import cycler
 colors = cycler('color', ['#EE6666', '#3388BB', '#9988DD', '#EECC55', '#88BB44', '#FFBBBB'])
@@ -34,13 +35,13 @@ plt.rcParams["mathtext.fontset"] = "cm"
 plt.rcParams["mathtext.rm"] = "Times New Roman"
 plt.rcParams["font.size"] = 14
 plt.xlabel('$L$', fontsize=14)
-plt.ylabel(r'$\rNMSE$', fontsize=14) # Gray scale
+plt.ylabel(r"$\mathrm{NMSE}$", fontsize=14) # Gray scale
 
 plt.xticks([1, 50, 100, 150], fontsize=14)
 # plt.yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0], fontsize=14)
 plt.yticks([0, 0.05, 0.1, 0.15, 0.2, 0.25], fontsize=14)
 
 plt.grid()
-plt.legend(fontsize=12)
+# plt.legend(fontsize=12)
 
 plt.show()
