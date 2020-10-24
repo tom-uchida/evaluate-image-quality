@@ -7,7 +7,7 @@ import math
 import sys
 args = sys.argv
 if len(args) != 3:
-    print("\nUSAGE : $ python image_comparison.py [reference_image] [evaluation_image]")
+    print("\nUSAGE : $ python evaluate_image_quality.py [reference_image] [evaluation_image]")
     sys.exit()
 
 # image1 is the original image, image2 is the noisy image

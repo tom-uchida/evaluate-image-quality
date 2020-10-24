@@ -1,5 +1,3 @@
-# 2枚の画像のヒストグラムを作成し，比較するプログラム
-
 import cv2, matplotlib
 import numpy as np
 import matplotlib.pyplot as plt

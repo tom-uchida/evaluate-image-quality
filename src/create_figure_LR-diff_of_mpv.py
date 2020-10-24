@@ -1,24 +1,18 @@
-#
-# リピートレベルと平均輝度値の差のを表すグラフを作成するプログラム
-#
-
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-plt.style.use('seaborn-white')
 
-from matplotlib import cycler
-colors = cycler('color', ['#EE6666', '#3388BB', '#9988DD', '#EECC55', '#88BB44', '#FFBBBB'])
-plt.rc('axes', facecolor='#E6E6E6', edgecolor='none', axisbelow=True, grid=False, prop_cycle=colors)
-plt.rc('grid', color='w', linestyle='solid')
-plt.rc('patch', edgecolor='#E6E6E6')
-plt.rc('lines', linewidth=2)
+import matplotlib.pyplot as plt
+plt.style.use('bmh')
+plt.rcParams["mathtext.fontset"] = "cm"
+plt.rcParams["mathtext.rm"] = "Times New Roman"
+plt.rcParams["font.size"] = 14
+plt.figure( figsize=(8, 6) )
 
 # Check arguments
 import sys
 args = sys.argv
 if len(args) != 3:
-    print("\nUSAGE : $ python graph_LR_and_apv.py [original_avg_pixel_value.csv] [noise_avg_pixel_value.csv]")
+    print("\nUSAGE: $ python {} [original_mean_pixel_value.csv] [noise_mean_pixel_value.csv]\n".format(args[0]))
     sys.exit()
 
 # Read csv file
@@ -50,17 +44,9 @@ diff = apv_original - apv_noise
 diff_apv = np.abs(diff)
 print(diff_apv)
 
-# Figure
-plt.rcParams["mathtext.fontset"] = "cm"
-plt.rcParams["mathtext.rm"] = "Times New Roman"
-plt.rcParams["font.size"] = 14
-
 # diff
 plt.scatter(LR_original, diff_apv, color='black')
 # plt.ylim([-5, 100])
-
-plt.xlabel('$L$', fontsize=14)
-plt.ylabel('Difference of average pixel value', fontsize=14) # Diff
 
 # plt.xticks([1, 10, 100, 150])
 plt.xticks([1, 50, 100, 150])
@@ -68,6 +54,7 @@ plt.xticks([1, 50, 100, 150])
 plt.yticks([0, 50, 100, 150, 200, 255])
 # plt.yticks([0, 50, 100])
 
-plt.grid()
+plt.xlabel('$L$', fontsize=16)
+plt.ylabel('Difference of mean pixel value', fontsize=16) # Diff
 
 plt.show()

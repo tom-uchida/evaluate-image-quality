@@ -19,7 +19,7 @@ plt.rc('lines', linewidth=2)
 import sys
 args = sys.argv
 if len(args) != 3:
-    print("\nUSAGE : $ python calc_avg_pixel_value.py [original_image.bmp] [noise_image.bmp]")
+    print("\nUSAGE : $ python calc_mean_pixel_value.py [original_image.bmp] [noise_image.bmp]")
     sys.exit()
 
 # Figure setting

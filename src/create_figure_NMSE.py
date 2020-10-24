@@ -1,21 +1,18 @@
 import numpy as np
 import pandas as pd
+
 import matplotlib.pyplot as plt
 plt.style.use('bmh')
-# plt.style.use('seaborn-white')
-
-from matplotlib import cycler
-colors = cycler('color', ['#EE6666', '#3388BB', '#9988DD', '#EECC55', '#88BB44', '#FFBBBB'])
-plt.rc('axes', facecolor='#E6E6E6', edgecolor='none', axisbelow=True, grid=False, prop_cycle=colors)
-plt.rc('grid', color='w', linestyle='solid')
-plt.rc('patch', edgecolor='#E6E6E6')
-plt.rc('lines', linewidth=2)
+plt.rcParams["mathtext.fontset"] = "cm"
+plt.rcParams["mathtext.rm"] = "Times New Roman"
+plt.rcParams["font.size"] = 14
+plt.figure( figsize=(10, 8) )
 
 # Check arguments
 import sys
 args = sys.argv
 if len(args) != 2:
-    print("\nUSAGE   : $ python graph_NMSE.py [csv_file_path]")
+    print("\nUSAGE   : $ python creat_figure_NMSE.py [csv_file_path]")
     sys.exit()
 
 
@@ -24,16 +21,13 @@ csv = pd.read_csv(args[1], header=None)
 
 # Convert to numpy
 LR_NMSE = csv.values
-LR   = LR_NMSE[0:16,0]
-NMSE = LR_NMSE[0:16,1]
+LR   = LR_NMSE[0:16, 0]
+NMSE = LR_NMSE[0:16, 1]
 
 # Create figure
 # plt.plot(LR, NMSE, color='black')
 c = plt.scatter(LR, NMSE, color='black')
 
-plt.rcParams["mathtext.fontset"] = "cm"
-plt.rcParams["mathtext.rm"] = "Times New Roman"
-plt.rcParams["font.size"] = 14
 plt.xlabel('$L$', fontsize=14)
 plt.ylabel(r"$\mathrm{NMSE}$", fontsize=14) # Gray scale
 
