@@ -7,7 +7,7 @@ args = sys.argv
 if len(args) != 2:
     sys.exit()
 
-def read_image( _img_name ):
+def read_img( _img_name ):
     img_BGR = cv2.imread( _img_name )
     img_RGB = cv2.cvtColor( img_BGR, cv2.COLOR_BGR2RGB )
 
@@ -28,16 +28,16 @@ def calc_entropy( _histogram, _num_of_pixels ):
 
 if __name__ == "__main__":
     # Read one image
-    img_in_RGB = read_image( args[1] )
+    img_RGB = read_img( args[1] )
 
     # Convert RGB to Grayscale
-    img_in_Gray = cv2.cvtColor( img_in_RGB, cv2.COLOR_RGB2GRAY )
+    img_Gray = cv2.cvtColor( img_RGB, cv2.COLOR_RGB2GRAY )
 
     # Get histogram of the input image
-    img_hist, img_bins = np.histogram( np.array( img_in_Gray ).flatten(), bins=np.arange( 256+1 ) )
+    img_hist, img_bins = np.histogram( np.array( img_Gray ).flatten(), bins=np.arange( 256+1 ) )
     # print( img_hist.shape ) (255,)
 
     # Calculate entropy of the input image
-    num_of_pixels = img_in_RGB.shape[0] * img_in_RGB.shape[1]
+    num_of_pixels = img_RGB.shape[0] * img_RGB.shape[1]
     entropy = calc_entropy( img_hist, num_of_pixels )
     print( 'Entropy: {:.2f}'.format( entropy ) )
